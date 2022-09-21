@@ -3,10 +3,11 @@ from itertools import combinations
 """
 Specify the number of qubits and the edges of the graph here
 """
-n=18
+n=8
 #E=[(0,1),(0,2),(0,3)] #star
 #E=[(0,1),(1,2),(0,2),(0,3),(2,5),(1,4),(3,5),(5,4),(4,3)] #toblerone
-E=[(1,4),(0,1),(1,3),(3,2),(2,0),(0,4),(1,5),(3,7),(2,6),(4,5),(5,7),(7,6),(6,4)] #cube
+#E=[(0,1),(1,3),(3,2),(2,0),(0,4),(1,5),(3,7),(2,6),(4,5),(5,7),(7,6),(6,4)] #cube
+E=[(1,4),(0,1),(1,3),(3,2),(2,0),(0,4),(1,5),(3,7),(2,6),(4,5),(5,7),(7,6),(6,4)] #cube+1edge
 
 def gf2_rank(M):
     """
@@ -21,7 +22,7 @@ def gf2_rank(M):
     for row in M:
         rows.append(int(''.join(str(i) for i in row),2))
 
-    print("rows=",rows)
+    #print("rows=",rows)
     rank=0
     while rows:
         pivot_row=rows.pop()
@@ -58,14 +59,14 @@ def T(M, n=n):
     """
     T=0
     for p in range(2**n):
-        Mp=bipartite(M,p)
+        Mp=bipartite(M,p,n)
         cutrk=gf2_rank(Mp)
         T+=2**(-cutrk)
-        print("p=",bin(p)[2:].zfill(n))
-        print("Mp=",Mp)
-        print("rank=",cutrk)
-        print("\n-----------------\n")
-    return T
+        #print("p=",bin(p)[2:].zfill(n))
+        #print("Mp=",Mp)
+        #print("rank=",cutrk)
+        #print("\n-----------------\n")
+    return int(T)
 
 
 if __name__=='__main__':
