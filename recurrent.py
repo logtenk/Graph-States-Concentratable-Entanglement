@@ -7,7 +7,7 @@ from utils import *
 
 UPDATE=True
 CHECK=False
-NMAX=7
+NMAX=5
 
 def calc_T(n, e):
     #w=weight(e)
@@ -43,12 +43,15 @@ def update_nw(n, w):
     length=n*(n-1)//2
     f=open(f_path, 'w')
     for comb in combinations(range(length), w):
+        #t0=time.perf_counter()
         e=['0' for i in range(length)]
         for idx in comb:
             e[idx]='1'
         e=''.join(e)
         T=calc_T(n, e)
         f.write(f'e{e} {T}\n')
+        #t1=time.perf_counter()
+        #print(f'n={n}, time to retrieve data={t1-t0:0.4f}')
     f.close()
 
 

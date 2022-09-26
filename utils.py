@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import time
 def weight(e):
     return sum(map(int, e))
 
@@ -54,6 +55,8 @@ def get_data(n, e):
         return 2
     w=weight(e)
     df=pd.read_csv(get_path(n, w), header=None, index_col=0, sep=' ')
-    return df.loc['e'+e,1]
+    T=df.loc['e'+e,1]
+
+    return T
 
 
