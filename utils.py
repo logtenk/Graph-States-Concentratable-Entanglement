@@ -29,6 +29,14 @@ def str_to_adj(e, n, get_edge=False):
     else:
         return M
 
+def get_edge(M):
+    n=M.shape[0]
+    for i in range(n-1):
+        for j in range(i+1,n):
+            if M[i, j]==1:
+                return (i,j)
+    return None
+
 def no_i(M, i):
     return np.delete(np.delete(M, i, 0), i, 1)
 
